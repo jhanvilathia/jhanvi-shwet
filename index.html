@@ -94,7 +94,8 @@
   @keyframes breezeR{0%{transform:skewX(0) scaleX(.85);opacity:.3}100%{transform:skewX(7deg) scaleX(1.2);opacity:.75}}
   #intro.play .breeze,#intro.play .rays{transition:opacity 1.5s 6s;opacity:0}
   #intro.skip .ph-hall,#intro.skip #city{animation-duration:.01s!important;animation-delay:0s!important}
-  .petal{position:absolute;border-radius:80% 0 80% 0;opacity:0;z-index:4;pointer-events:none}
+.petal{position:absolute;border-radius:80% 0 80% 0;opacity:0;z-index:4;pointer-events:none;
+  border:1px solid rgba(198,162,87,.45);box-shadow:0 2px 6px rgba(94,70,50,.25)}
   #intro.play .petal{animation:blow linear infinite}
   @keyframes blow{0%{transform:translate(0,0) rotate(0);opacity:0}10%{opacity:.9}90%{opacity:.9}100%{transform:translate(var(--dx),var(--dy)) rotate(620deg);opacity:0}}
   #vid{width:100%;height:100%;object-fit:cover;display:none}
@@ -326,8 +327,7 @@
   footer .script{font-size:2.6rem}
 }
 .swipe-hint{display:none;font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-dk);margin-top:6px}
-  @media (prefers-reduced-motion:reduce){.soft-petal,.petal,.rays,.breeze{animation:none!important}}
-</style>
+@media (prefers-reduced-motion:reduce){.soft-petal,.rays,.breeze{animation:none!important}#intro.play .petal{opacity:.8}}</style>
 </head>
 <body class="locked">
 
@@ -638,11 +638,11 @@ doorImg.onload = doorImg.onerror = () => door.classList.add('ready');
 doorImg.src = C.doorImage;
 [C.hallImage, C.cityImage].forEach(src => { const i = new Image(); i.src = src; });
 
-for (let i = 0; i < 30; i++) {
-  const p = document.createElement('span'), w = 7 + R() * 9;
+for (let i = 0; i < 45; i++) {
+  const p = document.createElement('span'), w = 10 + R() * 10;
   p.className = 'petal';
   Object.assign(p.style, { left: (-10 + R()*40) + '%', top: (R()*80) + '%', width: w+'px', height: w*1.3+'px',
-    background: PETALS[i % PETALS.length], animationDuration: 6 + R()*6 + 's', animationDelay: R()*8 + 's' });
+    background: PETALS[i % PETALS.length], animationDuration: 6 + R()*6 + 's', animationDelay: -R()*8 + 's' });
   p.style.setProperty('--dx', (80 + R()*60) + 'vw');
   p.style.setProperty('--dy', (10 + R()*40) + 'vh');
   $('#petals').appendChild(p);
